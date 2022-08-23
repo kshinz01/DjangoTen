@@ -20,5 +20,9 @@ RUN pip install wheel
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
+# copy entrypoint.sh
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+RUN chmod +x /usr/src/app/entrypoint.sh
+
 # add app
 COPY . .
