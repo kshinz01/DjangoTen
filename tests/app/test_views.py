@@ -1,7 +1,5 @@
 # app/tests/movies/test_views.py
-
 import json
-
 import pytest
 
 from app.models import Movie
@@ -26,6 +24,7 @@ def test_add_movie(client):
 
     movies = Movie.objects.all()
     assert len(movies) == 1
+
 
 @pytest.mark.django_db
 def test_add_movie_invalid_json(client):
@@ -77,7 +76,8 @@ def test_get_single_movie(client, add_movie):
 
 @pytest.mark.django_db
 def test_get_all_movies(client, add_movie):
-    movie_one = add_movie(title="The Big Lebowski", genre="comedy", year="1998")
+    movie_one = add_movie(title="The Big Lebowski",
+                          genre="comedy", year="1998")
     movie_two = add_movie("No Country for Old Men", "thriller", "2007")
     resp = client.get(f"/api/movies/")
     assert resp.status_code == 200
